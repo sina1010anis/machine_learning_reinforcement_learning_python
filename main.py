@@ -18,12 +18,28 @@ import numpy as np
 
 #---------------START Section 3 ML------------------------
     
-a = np.ones((3, 1))
+# a = np.ones((3, 1))
 
-b = np.array([2, 6, 7])
+# b = np.array([2, 6, 7])
 
-c = a+b
+# c = a+b
 
-print(c)
+# print(c)
 
 #---------------END Section 3 ML------------------------
+
+#---------------START Section 4 ML------------------------
+    
+np_arr = np.array([[1, 2], [3, 4]])
+
+sum = np.sum(np_arr)
+
+cumsum = np.cumsum(np_arr)
+
+rand = np.random.uniform(1, 5, (2, 3))
+
+rand_normal = np.random.standard_normal((2, 3))
+
+print(rand_normal)
+
+#---------------END Section 4 ML------------------------

@@ -1,17 +1,18 @@
-import mysql.connector
+import numpy as np
+#---------------START Section 2 ML------------------------
+np_arr = np.array([[1, 2], [3, 4]])
 
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="",
-  database="code"
-)
+np_mat = np.matrix([[1, 2], [3, 4]])
 
-mycursor = mydb.cursor()
+mul_normal = np_arr@np_arr
 
-mycursor.execute("SELECT * FROM users")
+mul_num = np.dot(np_arr, np_arr);
 
-myresult = mycursor.fetchall()
+mul_num_mul = np.multiply(np_arr, np_arr);
 
-for x in myresult:
-  print(x)
+mul_num_pro = np.prod(np_arr);
+
+print(mul_num_pro)
+
+#---------------END Section 2 ML------------------------
+

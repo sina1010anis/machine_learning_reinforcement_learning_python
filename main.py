@@ -128,26 +128,42 @@ import pandas as pd
 
 #---------------START Section 9 ML------------------------
 
-DF = pd.DataFrame(np.array([[1 ,2 , 3], [4, 5 , 6]]), index=['row_1', 'row_2'], columns=['col_1', 'col_2', 'col_3']) # شاخت یک نوع داده دو بعدی یا Data frame
+# DF = pd.DataFrame(np.array([[1 ,2 , 3], [4, 5 , 6]]), index=['row_1', 'row_2'], columns=['col_1', 'col_2', 'col_3']) # شاخت یک نوع داده دو بعدی یا Data frame
 
-index = DF.index # گرفتم مقدار index
+# index = DF.index # گرفتم مقدار index
 
-col = DF.columns # گرفتن مقدار col
+# col = DF.columns # گرفتن مقدار col
 
-values = DF.values # گرفتن مقدار values
+# values = DF.values # گرفتن مقدار values
 
-getForName = DF.loc['row_1']['col_2']# گرفتم داده از دیتافریم با نام ها
+# getForName = DF.loc['row_1']['col_2']# گرفتم داده از دیتافریم با نام ها
 
-getForNumber = DF.iloc[1][2] # گرفتم داده از دیتافریم با عدد ها
+# getForNumber = DF.iloc[1][2] # گرفتم داده از دیتافریم با عدد ها
 
-DF['col_4'] = [98, 7] # اضافه کردن مقدار جدید به دیتافریم
+# DF['col_4'] = [98, 7] # اضافه کردن مقدار جدید به دیتافریم
 
-DF.drop('col_4', axis=1, inplace=True) # حذف col مورد نظر (مقدار axis برای این است که قرار col حذف به نه index اگر index بود باید 0 بزاریم) (مقدار inplace برای این است داخل خودش ذخیره بشه و سیو بشه اگر فالس بشه باید دخال یک متغیر دیگه ریخته بشه)
+# DF.drop('col_4', axis=1, inplace=True) # حذف col مورد نظر (مقدار axis برای این است که قرار col حذف به نه index اگر index بود باید 0 بزاریم) (مقدار inplace برای این است داخل خودش ذخیره بشه و سیو بشه اگر فالس بشه باید دخال یک متغیر دیگه ریخته بشه)
 
-DF.rename(columns={'col_1' : 'c_1'}, inplace=True)
+# DF.rename(columns={'col_1' : 'c_1'}, inplace=True)
 
-DF.replace(2, 0)
+# DF.replace(2, 0)
 
-print(DF)
+# print(DF)
 
 #---------------START Section 9 ML------------------------
+
+
+#---------------START Section 10 ML------------------------
+
+DF = pd.DataFrame(np.array([[1 ,8 , 6], [4, 5 , 3]]), index=['row_1', 'row_2'], columns=['col_1', 'col_2', 'col_3']) # شاخت یک نوع داده دو بعدی یا Data frame
+
+DF['col_1'] = DF['col_1'].apply(lambda x: x*2) # تغییر داده ها داخل دیتافریم
+
+DF.sort_values(by='col_1', ascending=False) # مرتب سازی داده ها بر اساسا نام col
+
+DF_head = DF.head(1) # نمایش از یک سطر از داده از بالا
+
+DF_tail = DF.tail(1) # نمایش از یک سطر از داده از پایین
+
+print(DF_tail)
+#---------------START Section 10 ML------------------------

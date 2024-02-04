@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 #---------------START Section 2 ML------------------------
 # np_arr = np.array([[1, 2], [3, 4]])
 
@@ -114,7 +115,7 @@ import pandas as pd
 
 # print(s)
 
-#---------------START Section 7 ML------------------------
+#---------------END Section 7 ML------------------------
 
 
 #---------------START Section 8 ML------------------------
@@ -123,7 +124,7 @@ import pandas as pd
 
 # print(DF)
 
-#---------------START Section 8 ML------------------------
+#---------------END Section 8 ML------------------------
 
 
 #---------------START Section 9 ML------------------------
@@ -150,20 +151,31 @@ import pandas as pd
 
 # print(DF)
 
-#---------------START Section 9 ML------------------------
+#---------------END Section 9 ML------------------------
 
 
 #---------------START Section 10 ML------------------------
 
-DF = pd.DataFrame(np.array([[1 ,8 , 6], [4, 5 , 3]]), index=['row_1', 'row_2'], columns=['col_1', 'col_2', 'col_3']) # شاخت یک نوع داده دو بعدی یا Data frame
+# DF = pd.DataFrame(np.array([[1 ,8 , 6], [4, 5 , 3]]), index=['row_1', 'row_2'], columns=['col_1', 'col_2', 'col_3']) # شاخت یک نوع داده دو بعدی یا Data frame
 
-DF['col_1'] = DF['col_1'].apply(lambda x: x*2) # تغییر داده ها داخل دیتافریم
+# DF['col_1'] = DF['col_1'].apply(lambda x: x*2) # تغییر داده ها داخل دیتافریم
 
-DF.sort_values(by='col_1', ascending=False) # مرتب سازی داده ها بر اساسا نام col
+# DF.sort_values(by='col_1', ascending=False) # مرتب سازی داده ها بر اساسا نام col
 
-DF_head = DF.head(1) # نمایش از یک سطر از داده از بالا
+# DF_head = DF.head(1) # نمایش از یک سطر از داده از بالا
 
-DF_tail = DF.tail(1) # نمایش از یک سطر از داده از پایین
+# DF_tail = DF.tail(1) # نمایش از یک سطر از داده از پایین
 
-print(DF_tail)
-#---------------START Section 10 ML------------------------
+# print(DF_tail)
+#---------------END Section 10 ML------------------------
+
+
+#---------------START Section 11 ML------------------------
+
+plt.plot([20, 98, 5], [10, 5, 20]) #  خطی ساخت نمودار
+
+plt.scatter([20, 98, 5], [10, 5, 20]) #  خطی ساخت نمودار
+
+plt.show() # نمایش نموادر
+
+#---------------END Section 11 ML------------------------

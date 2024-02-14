@@ -33,25 +33,3 @@ normal = obj.transform(dataset) # ترنسفور کردن داده
 dataset = pd.DataFrame(normal, columns=['fruit_name', 'mass', 'width', 'height', 'color_score', 'fruit_label']) # تبدیل مجدد داده به دیتا فریم چون این داده تبدیل به عدد شده دیگه از حالت دیتافریم خارج شده 
 
 ## ---------------- اتمام----------------------------- کار تبدیل متن داده به عدد و اجرا رنج بین 0 و یک و تبدیل مجدد به دیتا فریم
-
-print(dataset)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-print('\n')

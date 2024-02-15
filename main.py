@@ -185,16 +185,40 @@ import matplotlib.pyplot as plt
 
 #---------------START Section 12 ML------------------------
 
-# plt.figure(figsize=(10, 10), dpi=100)
+# plt.figure(figsize=(10, 10), dpi=100) # تغییر نمایشی نمودار الان در اینجا سایز پمچره نمودار 10 در 10 است و رزولوشن 100 است
 
 # plt.plot([20, 98, 5], [10, 5, 20]) #  خطی ساخت نمودار
 
-# plt.xlabel('Number 1')
+# plt.xlabel('Number 1') # روی محور x یک برچسب میزند
 
-# plt.ylabel('Number 2')
+# plt.ylabel('Number 2') # روی محور y یک برچسب میزند
 
-# plt.yticks([10, 5, 20], ['MLS', 'PWO', 'IPW'])
+# plt.yticks([10, 5, 20], ['MLS', 'PWO', 'IPW']) # روی محور y مقدار های 10 و 5 20 را پیدا میکند و با مقدار های ارایه بعدی جای گذاری میکند
 
 # plt.show() # نمایش نموادر
 
 #---------------END Section 12 ML------------------------
+
+
+#---------------START Section 13 ML------------------------
+
+# city_name = np.array(['C1', 'C2', 'C3', 'C4'])
+# city_pop = np.array([878515214, 568514534, 321512584, 139614584]) / 100000
+
+# plt.figure(figsize=(10, 7)) # تغییر پنچره نمنایشی نمودار
+
+# plt.scatter(np.arange(len(city_name)), city_pop, s=city_pop) # نمایش نمودار به صورت نقطه ای 
+
+# plt.xticks(np.arange(len(city_name)), city_name)
+
+# plt.yticks(city_pop, ['8m+', '8m+ < x < 5m', '5m < x < 3m', '3m < x < 1m'])
+
+# plt.title('POP City Range...!')
+
+# plt.text(0, 878515214, 'POP All City Soshal...!') # قرار دادن یک متن روی نمودار 
+
+# plt.margins(0.3) # فاصله دادن از بغل های نمودار برای نمایش
+
+# plt.show()
+
+#---------------END Section 13 ML------------------------

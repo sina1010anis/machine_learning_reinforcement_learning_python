@@ -200,25 +200,34 @@ import matplotlib.pyplot as plt
 #---------------END Section 12 ML------------------------
 
 
-#---------------START Section 13 ML------------------------
+#---------------START Section 13, 14 ML------------------------
 
-# city_name = np.array(['C1', 'C2', 'C3', 'C4'])
-# city_pop = np.array([878515214, 568514534, 321512584, 139614584]) / 100000
+city_name = np.array(['X_C1', 'X_C2', 'X_C3', 'X_C4'])
+city_pop = np.array([878515214, 568514534, 321512584, 139614584]) / 1000000
 
-# plt.figure(figsize=(10, 7)) # تغییر پنچره نمنایشی نمودار
+city_name_y = np.array(['Y_C1', 'Y_C2', 'Y_C3', 'Y_C4'])
+city_pop_y = np.array([448515214, 338514534, 221512584, 119614584]) / 1000000
 
-# plt.scatter(np.arange(len(city_name)), city_pop, s=city_pop) # نمایش نمودار به صورت نقطه ای 
+plt.figure(figsize=(10, 7)) # تغییر پنچره نمنایشی نمودار
 
-# plt.xticks(np.arange(len(city_name)), city_name)
+plt.plot(np.arange(len(city_name)), city_pop, ls='-' , marker='+', mew=5) # نمایش نمودار به صورت نقطه ای 
 
-# plt.yticks(city_pop, ['8m+', '8m+ < x < 5m', '5m < x < 3m', '3m < x < 1m'])
+plt.plot(np.arange(len(city_name_y)), city_pop_y, ls='--' , marker='*', mew=5) # نمایش نمودار به صورت نقطه ای 
 
-# plt.title('POP City Range...!')
+plt.legend(['City X', 'City Y'], loc='best') # نمایش مشخصات نمودار
 
-# plt.text(0, 878515214, 'POP All City Soshal...!') # قرار دادن یک متن روی نمودار 
+plt.xticks(np.arange(len(city_name)), city_name)
 
-# plt.margins(0.3) # فاصله دادن از بغل های نمودار برای نمایش
+plt.grid()
 
-# plt.show()
+plt.yticks(city_pop, ['8m+', '8m+ < x < 5m', '5m < x < 3m', '3m < x < 1m'])
 
-#---------------END Section 13 ML------------------------
+plt.title('POP City Range...!')
+
+plt.text(0, 878515214, 'POP All City Soshal...!') # قرار دادن یک متن روی نمودار 
+
+plt.margins(0.3) # فاصله دادن از بغل های نمودار برای نمایش
+
+plt.show()
+
+#---------------END Section 13, 14 ML------------------------

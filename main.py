@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sb
 #---------------START Section 2 ML------------------------
 # np_arr = np.array([[1, 2], [3, 4]])
 
@@ -235,3 +236,18 @@ import matplotlib.pyplot as plt
 # plt.show()
 
 #---------------END Section 13, 14, 15, 16 ML------------------------
+
+
+#---------------START Section 17 ML------------------------
+
+# data = pd.read_csv('iris.csv')
+
+# data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+
+# #sb.boxplot(x='sepal_length', y='sepal_width', data=data) # تولد نمودار boxplot
+
+# sb.pairplot(data, hue="variety") # تولید نمودار pairplot
+
+# plt.show()
+
+#---------------END Section 17 ML------------------------

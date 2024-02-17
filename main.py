@@ -238,7 +238,7 @@ import seaborn as sb
 #---------------END Section 13, 14, 15, 16 ML------------------------
 
 
-#---------------START Section 17 ML------------------------
+#---------------START Section 17, 18 ML------------------------
 
 # data = pd.read_csv('iris.csv')
 
@@ -250,4 +250,21 @@ import seaborn as sb
 
 # plt.show()
 
-#---------------END Section 17 ML------------------------
+#---------------END Section 17, 18 ML------------------------
+
+
+#---------------START Section 19 ML------------------------
+
+data = pd.read_csv('iris.csv')
+
+data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+
+counts = data.variety.value_counts() # نمایش تعداد و نوع ویژگی مورد نظر در ایجا گفته شده ابتدا از data بیا مقدار \variety رو بگیر بعد تعداد هر کدوم رو بده
+
+index = counts.index # نمایش مقدار های اصلی
+
+plt.bar(counts, index) # طراحی نمدار bar
+
+plt.show()
+
+#---------------END Section 19 ML------------------------

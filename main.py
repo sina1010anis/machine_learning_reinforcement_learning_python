@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sb
+from scipy.stats import pearsonr
 #---------------START Section 2 ML------------------------
 # np_arr = np.array([[1, 2], [3, 4]])
 
@@ -272,28 +273,97 @@ import seaborn as sb
 
 #---------------START Section 21 ML------------------------
 
+# data = pd.read_csv('iris.csv')
+
+# data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+
+# def ECDF(data):
+#     n = len(data)
+#     x = np.sort(data)
+#     y = np.arange(1, n+1)/n
+#     return x,y
+
+# x,y = ECDF(data.sepal_length) # ساخت نمودار توزیع اطلاعات برای قدار های مختلف
+
+# plt.scatter(x, y)
+
+# plt.xlabel('sepal length')
+
+# plt.ylabel('ECDF')
+
+# plt.yticks([0, 0.1, 0.2, 0.3, 0.4, 0.5 ,0.6 , 0.7, 0.8, 0.9, 1], ['0%', '10%', '20%', '30%', '40%', '50%' ,'60%' , '70%', '80%', '90%', '100%'])
+
+# plt.grid()
+
+# plt.show()
+
+#---------------END Section 21 ML------------------------
+
+
+#---------------START Section 22 ML------------------------
+
+# data = pd.read_csv('iris.csv')
+
+# data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+
+# var = np.var(data.sepal_length) # واریانس مشخص میکنه چقدر داد های ما از میانگی داده ها فاصله دارند
+
+# std = np.std(data.sepal_length) # انحراف از معیار که همان جذر واراینس است
+
+# per = np.percentile(data.sepal_length, [25, 50, 75]) # اگر مقدار های 25و 50و 75 را بدهیم همان مقدار های Q1 ,Q2 , Q3 را میدهد که در boxplot نیاز بود در واقع Q1 کوچکتر ار 25 درصد از داده ها هست ً2 بزرکتر از 50 در است ً3 در واقع 75 درصد بزرگتر است
+
+# print('var=>', var)
+
+# print('std=>', std)
+
+# print('per=>', per)
+
+#---------------END Section 22 ML------------------------
+
+
+#---------------START Section 23 ML------------------------
+
+# data = pd.read_csv('iris.csv')
+
+# data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+
+# plt.scatter(data.sepal_length, data.petal_length) # ساخت نمودار که قبلا ت.وضوح داده شده
+
+# SL_mean = np.mean(data.sepal_length) # نقطه وسط ویژگی مورد نظر
+
+# PL_mean = np.mean(data.petal_length) # همان بالای است
+
+# print(SL_mean, '----', PL_mean)
+
+# print(np.cov(data.sepal_length, data.petal_length)) # بدست اوردن کواریانس دوتا داده نسبت به هم 
+
+# plt.plot(SL_mean, PL_mean, marker='o', color='red') # زدن نقطه بر اساس داده های داده شده
+
+# plt.xlabel('sepal length')
+
+# plt.ylabel('petal length')
+
+# plt.grid()
+
+# plt.show()
+
+#---------------END Section 23 ML------------------------
+
+
+#---------------START Section 24 ML------------------------
+
 data = pd.read_csv('iris.csv')
 
 data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
 
-def ECDF(data):
-    n = len(data)
-    x = np.sort(data)
-    y = np.arange(1, n+1)/n
-    return x,y
+plt.scatter(data.petal_length, data.petal_width) # ساخت نمودار که قبلا ت.وضوح داده شده
 
-x,y = ECDF(data.sepal_length) # ساخت نمودار توزیع اطلاعات برای قدار های مختلف
+p_c , p_v = pearsonr(data.petal_length, data.petal_width)
 
-plt.scatter(x, y)
+print(p_c)
 
-plt.xlabel('sepal length')
-
-plt.ylabel('ECDF')
-
-plt.yticks([0, 0.1, 0.2, 0.3, 0.4, 0.5 ,0.6 , 0.7, 0.8, 0.9, 1], ['0%', '10%', '20%', '30%', '40%', '50%' ,'60%' , '70%', '80%', '90%', '100%'])
-
-plt.grid()
+# sb.pairplot(data)
 
 plt.show()
 
-#---------------END Section 21 ML------------------------
+#---------------END Section 24 ML------------------------

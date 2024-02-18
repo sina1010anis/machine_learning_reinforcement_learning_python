@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sb
-from scipy.stats import pearsonr
+from scipy.stats import pearsonr,chi2_contingency
 #---------------START Section 2 ML------------------------
 # np_arr = np.array([[1, 2], [3, 4]])
 
@@ -386,3 +386,18 @@ from scipy.stats import pearsonr
 # print(corr)
 
 #---------------END Section 25 ML------------------------
+
+
+#---------------START Section 26, 27, 28, 29 ML------------------------
+
+data = pd.read_csv('iris.csv')
+
+data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+
+t_b = pd.crosstab(data.petal_length, data.variety) # با استفاده از این تابع ما دوتا ویژگی را تعداد هر مقدار را برای هر دو ویژگی برسی می شود مثلا برای ویژگی 1 چه تعداد از ویژگی 2 وجود دارد
+
+chi , p_v , dof , t_e = chi2_contingency(t_b.values) # مقدار های متغییر بالا را میدهیم به این تابع و مقدار های که میخواهیم برای میزان شباهت دو متغییر را مشخص میکند (متغییر اول مقدار شباهت) (مقدار دوم مقدار جقدر شبیه هستند )( مقدار سوم چقدر درسته فرضیه صفر)(و مقدار اخر جدول درستی را نشان میدهد)
+
+print(t_e)
+
+#---------------END Section 26, 27, 28, 29 ML------------------------

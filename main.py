@@ -390,14 +390,25 @@ from scipy.stats import pearsonr,chi2_contingency
 
 #---------------START Section 26, 27, 28, 29 ML------------------------
 
-data = pd.read_csv('iris.csv')
+# data = pd.read_csv('iris.csv')
 
-data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+# data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
 
-t_b = pd.crosstab(data.petal_length, data.variety) # با استفاده از این تابع ما دوتا ویژگی را تعداد هر مقدار را برای هر دو ویژگی برسی می شود مثلا برای ویژگی 1 چه تعداد از ویژگی 2 وجود دارد
+# t_b = pd.crosstab(data.petal_length, data.variety) # با استفاده از این تابع ما دوتا ویژگی را تعداد هر مقدار را برای هر دو ویژگی برسی می شود مثلا برای ویژگی 1 چه تعداد از ویژگی 2 وجود دارد
 
-chi , p_v , dof , t_e = chi2_contingency(t_b.values) # مقدار های متغییر بالا را میدهیم به این تابع و مقدار های که میخواهیم برای میزان شباهت دو متغییر را مشخص میکند (متغییر اول مقدار شباهت) (مقدار دوم مقدار جقدر شبیه هستند )( مقدار سوم چقدر درسته فرضیه صفر)(و مقدار اخر جدول درستی را نشان میدهد)
+# chi , p_v , dof , t_e = chi2_contingency(t_b.values) # مقدار های متغییر بالا را میدهیم به این تابع و مقدار های که میخواهیم برای میزان شباهت دو متغییر را مشخص میکند (متغییر اول مقدار شباهت) (مقدار دوم مقدار جقدر شبیه هستند )( مقدار سوم چقدر درسته فرضیه صفر)(و مقدار اخر جدول درستی را نشان میدهد)
 
-print(t_e)
+# print(t_e)
 
 #---------------END Section 26, 27, 28, 29 ML------------------------
+
+
+#---------------START Section 30, 31 ML------------------------
+
+# ss = np.random.normal(0, 1, size=1000) # توزیع نرمال عدد ها به صورت تصادفی
+
+# sb.distplot(ss) # ساخت نمودار برای توزیع نرمال
+
+# plt.show()
+
+#---------------END Section 30, 31 ML------------------------

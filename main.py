@@ -352,18 +352,37 @@ from scipy.stats import pearsonr
 
 #---------------START Section 24 ML------------------------
 
-data = pd.read_csv('iris.csv')
+# data = pd.read_csv('iris.csv')
 
-data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+# data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
 
-plt.scatter(data.petal_length, data.petal_width) # ساخت نمودار که قبلا ت.وضوح داده شده
+# plt.scatter(data.petal_length, data.petal_width) # ساخت نمودار که قبلا ت.وضوح داده شده
 
-p_c , p_v = pearsonr(data.petal_length, data.petal_width)
+# p_c , p_v = pearsonr(data.petal_length, data.petal_width)
 
-print(p_c)
+# print(p_c)
 
-# sb.pairplot(data)
+# # sb.pairplot(data)
 
-plt.show()
+# plt.show()
 
 #---------------END Section 24 ML------------------------
+
+
+#---------------START Section 25 ML------------------------
+
+# data = pd.read_csv('iris.csv')
+
+# data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+
+# data_2 = data.drop(['variety', 'sepal_length', 'sepal_width'], axis=1)
+
+# corr = data_2.corr() # نمایش ارتباط بین ستون های مختلف باهم
+
+# sb.heatmap(corr, xticklabels=corr.columns, yticklabels=corr.columns, vmin=-1, vmax=1)
+
+# plt.show()
+
+# print(corr)
+
+#---------------END Section 25 ML------------------------

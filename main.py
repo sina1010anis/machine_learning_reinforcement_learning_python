@@ -253,18 +253,47 @@ import seaborn as sb
 #---------------END Section 17, 18 ML------------------------
 
 
-#---------------START Section 19 ML------------------------
+#---------------START Section 19, 20 ML------------------------
+
+# data = pd.read_csv('iris.csv')
+
+# data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+
+# counts = data.variety.value_counts() # نمایش تعداد و نوع ویژگی مورد نظر در ایجا گفته شده ابتدا از data بیا مقدار \variety رو بگیر بعد تعداد هر کدوم رو بده
+
+# index = counts.index # نمایش مقدار های اصلی
+
+# plt.bar(counts, index) # طراحی نمدار bar
+
+# plt.show()
+
+#---------------END Section 19, 20 ML------------------------
+
+
+#---------------START Section 21 ML------------------------
 
 data = pd.read_csv('iris.csv')
 
 data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
 
-counts = data.variety.value_counts() # نمایش تعداد و نوع ویژگی مورد نظر در ایجا گفته شده ابتدا از data بیا مقدار \variety رو بگیر بعد تعداد هر کدوم رو بده
+def ECDF(data):
+    n = len(data)
+    x = np.sort(data)
+    y = np.arange(1, n+1)/n
+    return x,y
 
-index = counts.index # نمایش مقدار های اصلی
+x,y = ECDF(data.sepal_length) # ساخت نمودار توزیع اطلاعات برای قدار های مختلف
 
-plt.bar(counts, index) # طراحی نمدار bar
+plt.scatter(x, y)
+
+plt.xlabel('sepal length')
+
+plt.ylabel('ECDF')
+
+plt.yticks([0, 0.1, 0.2, 0.3, 0.4, 0.5 ,0.6 , 0.7, 0.8, 0.9, 1], ['0%', '10%', '20%', '30%', '40%', '50%' ,'60%' , '70%', '80%', '90%', '100%'])
+
+plt.grid()
 
 plt.show()
 
-#---------------END Section 19 ML------------------------
+#---------------END Section 21 ML------------------------

@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sb
 from scipy.stats import pearsonr,chi2_contingency
 from sklearn import preprocessing
+from sklearn.impute import SimpleImputer
 #---------------START Section 2 ML------------------------
 # np_arr = np.array([[1, 2], [3, 4]])
 
@@ -417,24 +418,57 @@ from sklearn import preprocessing
 
 #---------------START Section 32, 33, 34 ML------------------------
 
-data = pd.read_csv('iris.csv')
+# data = pd.read_csv('iris.csv')
 
-data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+# data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
 
-data.replace(1.4, '?', inplace=True) # تغییر داده ها به ؟ برای این که داده های missing بسازیم و در ادامه نرمال کنیم
+# data.replace(1.4, '?', inplace=True) # تغییر داده ها به ؟ برای این که داده های missing بسازیم و در ادامه نرمال کنیم
 
-data.drop(['sepal_length', 'sepal_width'], axis=1, inplace=True) # یکی از عملیات های پیش پردازش داده است برای کاهش ابعداد داده به ستون یا ویژگی های که نیاز نداریم اون ها رو پاک میکنیم
+# data.drop(['sepal_length', 'sepal_width'], axis=1, inplace=True) # یکی از عملیات های پیش پردازش داده است برای کاهش ابعداد داده به ستون یا ویژگی های که نیاز نداریم اون ها رو پاک میکنیم
 
-# یکی دیگر از عملیات حذف داده های نادرست است که در row ها هست در این دیتا ست دیتا ها همه دست است و نیازی به حذف نیاز (داده نادرست یعننی مثلا جمعیت یک شهر مساوی با جمعیت کل دنیا باشد!!!!)
+# # یکی دیگر از عملیات حذف داده های نادرست است که در row ها هست در این دیتا ست دیتا ها همه دست است و نیازی به حذف نیاز (داده نادرست یعننی مثلا جمعیت یک شهر مساوی با جمعیت کل دنیا باشد!!!!)
 
-data.replace('?', np.nan, inplace=True) # برای درست کردن داده های خطا دارد یا گم شده ابتدا ان ها را با مقدار خالی که numpy است پر میکنیم 
+# data.replace('?', np.nan, inplace=True) # برای درست کردن داده های خطا دارد یا گم شده ابتدا ان ها را با مقدار خالی که numpy است پر میکنیم 
 
-data.petal_length.fillna(data.petal_length.mean(), inplace=True) # قرار دادن میانگین داده های petal_length جای مقدار های NaN
+# data.petal_length.fillna(data.petal_length.mean(), inplace=True) # قرار دادن میانگین داده های petal_length جای مقدار های NaN
 
-data.petal_width.fillna(data.petal_width.mean(), inplace=True) # قرار دادن میانگین داده های petal_width جای مقدار های NaN
+# data.petal_width.fillna(data.petal_width.mean(), inplace=True) # قرار دادن میانگین داده های petal_width جای مقدار های NaN
 
-# اگر بخواهیم این کار را برای هر ستون تکرار نکینم باید برای کل دیتافریم این کار را انجام دهیم پس جا است به این شکل کار میکنیم data.fillna(data.mean(), inplace=True)
+# # اگر بخواهیم این کار را برای هر ستون تکرار نکینم باید برای کل دیتافریم این کار را انجام دهیم پس جا است به این شکل کار میکنیم data.fillna(data.mean(), inplace=True)
 
-print(data.isnull().sum())
+# print(data.isnull().sum())
 
 #---------------END Section 32, 33, 34 ML------------------------
+
+
+#---------------START Section 32, 33, 34, 35, 36 ML------------------------
+
+# data = pd.read_csv('iris.csv')
+
+# data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+
+# data.replace(1.4, '?', inplace=True) # تغییر داده ها به ؟ برای این که داده های missing بسازیم و در ادامه نرمال کنیم
+
+# data.drop(['sepal_length', 'sepal_width'], axis=1, inplace=True) # یکی از عملیات های پیش پردازش داده است برای کاهش ابعداد داده به ستون یا ویژگی های که نیاز نداریم اون ها رو پاک میکنیم
+
+# # یکی دیگر از عملیات حذف داده های نادرست است که در row ها هست در این دیتا ست دیتا ها همه دست است و نیازی به حذف نیاز (داده نادرست یعننی مثلا جمعیت یک شهر مساوی با جمعیت کل دنیا باشد!!!!)
+
+# data.replace('?', np.nan, inplace=True) # برای درست کردن داده های خطا دارد یا گم شده ابتدا ان ها را با مقدار خالی که numpy است پر میکنیم 
+
+# # data.fillna({'petal_length':1.111, 'petal_width':1.111}, inplace=True) # قرار دادن مقدار های متفاوت برای هر ستون خاص
+
+# # i = SimpleImputer(missing_values=np.nan, strategy='mean', verbose=0) # قرار دادن مقدار میانگین برای مقدار های خالی
+
+# # i.fit(data) # فیت کردن مشخصات قبلی روی دیتافریم
+
+# # new_data = i.transform(data) # ذخیره تغییرات جدید در یک متغییر
+
+# # d_data = data.drop_duplicates() # حذف داده های تکراری در تماما ستون ها
+
+# # d_data_2 = data.drop_duplicates(['petal_length']) # حذف داده های تکراری فقط برای ستون petal_length
+
+# # new_data = pd.concat([data, data_2], axis=0, ignore_index=True) # ترکیب دو دیتافریم باهم مقدار axis میگه به سطر ها اضافه شود وl مقدارignore_index میگه که از اول شماره index  ها رو بساز (بعد از این کار باید ستونی که خیلی )
+
+# print(data)
+
+#---------------END Section 32, 33, 34, 35, 36 ML------------------------

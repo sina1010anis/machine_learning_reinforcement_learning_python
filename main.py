@@ -415,16 +415,26 @@ from sklearn import preprocessing
 #---------------END Section 30, 31 ML------------------------
 
 
-#---------------START Section 32, 33 ML------------------------
+#---------------START Section 32, 33, 34 ML------------------------
 
 data = pd.read_csv('iris.csv')
 
 data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
 
+data.replace(1.4, '?', inplace=True) # تغییر داده ها به ؟ برای این که داده های missing بسازیم و در ادامه نرمال کنیم
+
 data.drop(['sepal_length', 'sepal_width'], axis=1, inplace=True) # یکی از عملیات های پیش پردازش داده است برای کاهش ابعداد داده به ستون یا ویژگی های که نیاز نداریم اون ها رو پاک میکنیم
 
 # یکی دیگر از عملیات حذف داده های نادرست است که در row ها هست در این دیتا ست دیتا ها همه دست است و نیازی به حذف نیاز (داده نادرست یعننی مثلا جمعیت یک شهر مساوی با جمعیت کل دنیا باشد!!!!)
 
-print(data.describe())
+data.replace('?', np.nan, inplace=True) # برای درست کردن داده های خطا دارد یا گم شده ابتدا ان ها را با مقدار خالی که numpy است پر میکنیم 
 
-#---------------END Section 32, 33 ML------------------------
+data.petal_length.fillna(data.petal_length.mean(), inplace=True) # قرار دادن میانگین داده های petal_length جای مقدار های NaN
+
+data.petal_width.fillna(data.petal_width.mean(), inplace=True) # قرار دادن میانگین داده های petal_width جای مقدار های NaN
+
+# اگر بخواهیم این کار را برای هر ستون تکرار نکینم باید برای کل دیتافریم این کار را انجام دهیم پس جا است به این شکل کار میکنیم data.fillna(data.mean(), inplace=True)
+
+print(data.isnull().sum())
+
+#---------------END Section 32, 33, 34 ML------------------------

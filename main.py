@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sb
 from scipy.stats import pearsonr,chi2_contingency
+from sklearn import preprocessing
 #---------------START Section 2 ML------------------------
 # np_arr = np.array([[1, 2], [3, 4]])
 
@@ -412,3 +413,18 @@ from scipy.stats import pearsonr,chi2_contingency
 # plt.show()
 
 #---------------END Section 30, 31 ML------------------------
+
+
+#---------------START Section 32, 33 ML------------------------
+
+data = pd.read_csv('iris.csv')
+
+data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+
+data.drop(['sepal_length', 'sepal_width'], axis=1, inplace=True) # یکی از عملیات های پیش پردازش داده است برای کاهش ابعداد داده به ستون یا ویژگی های که نیاز نداریم اون ها رو پاک میکنیم
+
+# یکی دیگر از عملیات حذف داده های نادرست است که در row ها هست در این دیتا ست دیتا ها همه دست است و نیازی به حذف نیاز (داده نادرست یعننی مثلا جمعیت یک شهر مساوی با جمعیت کل دنیا باشد!!!!)
+
+print(data.describe())
+
+#---------------END Section 32, 33 ML------------------------

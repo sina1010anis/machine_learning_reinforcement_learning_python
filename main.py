@@ -472,3 +472,18 @@ from sklearn.impute import SimpleImputer
 # print(data)
 
 #---------------END Section 32, 33, 34, 35, 36 ML------------------------
+
+
+#---------------START Section 37 ML------------------------
+
+# data = pd.read_csv('iris.csv')
+
+# data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+
+# val = data.variety.value_counts() #  گرفتن اطلعات مختصر برای ویژگی خاص
+
+# gro = data.groupby(data.variety) # مقدار وردی مارو با مقدار های کلی دیتافریم برسی میکنه مثلا با استفاده از تابع mean میتوان گقت که هر یک از مقدار های ورودی را برای هر یک از مقدار های دیتافریم میانگین میگیرد(مثلا میگه در سیستم عامل ویندوز که ورودی هست در رم 8 گیگ میانگین انقدر هست)
+
+# print(gro.mean())
+
+#---------------END Section 37 ML------------------------

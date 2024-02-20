@@ -5,6 +5,7 @@ import seaborn as sb
 from scipy.stats import pearsonr,chi2_contingency
 from sklearn import preprocessing
 from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import scale
 #---------------START Section 2 ML------------------------
 # np_arr = np.array([[1, 2], [3, 4]])
 
@@ -516,3 +517,20 @@ from sklearn.impute import SimpleImputer
 # print(new_data)
 
 #---------------END Section 39 ML------------------------
+
+
+#---------------START Section 40 ML------------------------
+
+data = pd.read_csv('iris.csv')
+
+data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+
+new_data = pd.get_dummies(data)
+
+s_data = scale(new_data)
+
+df_data = pd.DataFrame(s_data, index=new_data.index, columns=new_data.columns)
+
+print(df_data)
+
+#---------------END Section 40 ML------------------------

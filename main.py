@@ -487,3 +487,32 @@ from sklearn.impute import SimpleImputer
 # print(gro.mean())
 
 #---------------END Section 37 ML------------------------
+
+
+#---------------START Section 38 ML------------------------
+
+# data = pd.read_csv('iris.csv')
+
+# data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+
+# counter = pd.crosstab(data.variety, data.petal_width) # این متدد میشماره از ویژگی اولی در ویژگی دومی چندتا هست
+
+# counter_pivote = pd.pivot_table(data, index=data.variety , columns=data.petal_width, values=data.petal_length) # برسی میکنه برای ویژگی ایندکس و در کول چه تعداد ولیو هست
+
+# print(counter_pivote)
+
+#---------------END Section 38 ML------------------------
+
+
+
+#---------------START Section 39 ML------------------------
+
+# data = pd.read_csv('iris.csv')
+
+# data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+
+# new_data = pd.get_dummies(data) # تبدیل کردن ویژگی های که عدد نیستند و خیلی راحت تامام وی"ی های که عدد نیستن را به چند ویژگی تبدیل میکنه و هر جای که اون ویژگی را داشت میاد یک جلوش میزاره
+
+# print(new_data)
+
+#---------------END Section 39 ML------------------------

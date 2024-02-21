@@ -5,7 +5,7 @@ import seaborn as sb
 from scipy.stats import pearsonr,chi2_contingency
 from sklearn import preprocessing
 from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import scale
+from sklearn.preprocessing import scale, normalize, minmax_scale
 #---------------START Section 2 ML------------------------
 # np_arr = np.array([[1, 2], [3, 4]])
 
@@ -521,16 +521,44 @@ from sklearn.preprocessing import scale
 
 #---------------START Section 40 ML------------------------
 
+# data = pd.read_csv('iris.csv')
+
+# data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+
+# new_data = pd.get_dummies(data) # تبدیل حروف به اعداد
+
+# s_data = scale(new_data) # قرار دادن تمام رنج های عدد ها و همه بازه ها
+
+# df_data = pd.DataFrame(s_data, index=new_data.index, columns=new_data.columns) # چون وقتی عدد ها در یک بازه قرارا میگیرند تبدیل به ارایه می شودند و پس باید دوباره به دیتا فریم تبدیل شوند و ایندس و کول ها دوباره مقدار دهی شود با داده اصلی
+
+# print(df_data)
+
+#---------------END Section 40 ML------------------------
+
+
+
+#---------------START Section 41 ML------------------------
+
 data = pd.read_csv('iris.csv')
 
 data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
 
-new_data = pd.get_dummies(data)
+new_data = pd.get_dummies(data) # تبدیل حروف به عدد یا جدا سازی ان ها
 
-s_data = scale(new_data)
+s_data = scale(new_data) # قرار دادن بین یک رنجی برای داده های عددی
 
-df_data = pd.DataFrame(s_data, index=new_data.index, columns=new_data.columns)
+number_data = pd.DataFrame(s_data, index=new_data.index, columns=new_data.columns) # بعد scale  باید دیتافریم شود مجدد
 
-print(df_data)
+nor_data = normalize(number_data, norm="l1", axis=0) # نرمال کردن عدد ها (nor میگه اگر l1 بود منهتن باشهاگر           L2 بود بیاد بر اسااس قلیدوسی باشه ) (و axis  صفر میگه روی ستون ها بیا اجرا شو)
 
-#---------------END Section 40 ML------------------------
+df_nor_data = pd.DataFrame(nor_data, index=new_data.index, columns=new_data.columns)# بعد normalize  باید دیتافریم شود مجدد
+
+mms_data = minmax_scale(number_data, feature_range=(0, 1)) # قرار دادن عدد ها بین رنج دلخاوه الان در این بخهش بین 0 و 1 رنج قرار گرفته
+
+df_mms_data = pd.DataFrame(mms_data, index=new_data.index, columns=new_data.columns)# بعد minmax_scale  باید دیتافریم شود مجدد
+
+print(df_mms_data.info())
+
+# nor_data = normalize(data)
+
+#---------------END Section 41 ML------------------------

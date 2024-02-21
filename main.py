@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sb
 from scipy.stats import pearsonr,chi2_contingency
-from sklearn import preprocessing
+from sklearn import preprocessing, datasets
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import scale, normalize, minmax_scale
 #---------------START Section 2 ML------------------------
@@ -539,26 +539,53 @@ from sklearn.preprocessing import scale, normalize, minmax_scale
 
 #---------------START Section 41 ML------------------------
 
-data = pd.read_csv('iris.csv')
+# data = pd.read_csv('iris.csv')
 
-data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+# data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
 
-new_data = pd.get_dummies(data) # تبدیل حروف به عدد یا جدا سازی ان ها
+# new_data = pd.get_dummies(data) # تبدیل حروف به عدد یا جدا سازی ان ها
 
-s_data = scale(new_data) # قرار دادن بین یک رنجی برای داده های عددی
+# s_data = scale(new_data) # قرار دادن بین یک رنجی برای داده های عددی
 
-number_data = pd.DataFrame(s_data, index=new_data.index, columns=new_data.columns) # بعد scale  باید دیتافریم شود مجدد
+# number_data = pd.DataFrame(s_data, index=new_data.index, columns=new_data.columns) # بعد scale  باید دیتافریم شود مجدد
 
-nor_data = normalize(number_data, norm="l1", axis=0) # نرمال کردن عدد ها (nor میگه اگر l1 بود منهتن باشهاگر           L2 بود بیاد بر اسااس قلیدوسی باشه ) (و axis  صفر میگه روی ستون ها بیا اجرا شو)
+# nor_data = normalize(number_data, norm="l1", axis=0) # نرمال کردن عدد ها (nor میگه اگر l1 بود منهتن باشهاگر           L2 بود بیاد بر اسااس قلیدوسی باشه ) (و axis  صفر میگه روی ستون ها بیا اجرا شو)
 
-df_nor_data = pd.DataFrame(nor_data, index=new_data.index, columns=new_data.columns)# بعد normalize  باید دیتافریم شود مجدد
+# df_nor_data = pd.DataFrame(nor_data, index=new_data.index, columns=new_data.columns)# بعد normalize  باید دیتافریم شود مجدد
 
-mms_data = minmax_scale(number_data, feature_range=(0, 1)) # قرار دادن عدد ها بین رنج دلخاوه الان در این بخهش بین 0 و 1 رنج قرار گرفته
+# mms_data = minmax_scale(number_data, feature_range=(0, 1)) # قرار دادن عدد ها بین رنج دلخاوه الان در این بخهش بین 0 و 1 رنج قرار گرفته
 
-df_mms_data = pd.DataFrame(mms_data, index=new_data.index, columns=new_data.columns)# بعد minmax_scale  باید دیتافریم شود مجدد
+# df_mms_data = pd.DataFrame(mms_data, index=new_data.index, columns=new_data.columns)# بعد minmax_scale  باید دیتافریم شود مجدد
 
-print(df_mms_data.info())
-
-# nor_data = normalize(data)
+# print(df_mms_data.info())
 
 #---------------END Section 41 ML------------------------
+
+
+
+#---------------START Section 42 ML------------------------
+
+# df = pd.DataFrame(np.array([1, 3 ,5 , 6 , 7, 9, 15, 28])) # بعد scale  باید دیتافریم شود مجدد
+
+# df.boxplot() # ساخت boxplot با دیتافریم
+
+# plt.show()
+
+#---------------END Section 42 ML------------------------
+
+
+#---------------START Section 43, 44 ML------------------------
+
+# iris = datasets.load_iris()
+
+# data = pd.read_csv('iris.csv')
+
+# data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+
+# # print(type(data))
+
+# sb.pairplot(data, hue='variety')
+
+# plt.show()
+
+#---------------END Section 43, 44 ML------------------------

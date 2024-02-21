@@ -6,6 +6,7 @@ from scipy.stats import pearsonr,chi2_contingency
 from sklearn import preprocessing, datasets
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import scale, normalize, minmax_scale
+from sklearn.neighbors import KNeighborsClassifier
 #---------------START Section 2 ML------------------------
 # np_arr = np.array([[1, 2], [3, 4]])
 
@@ -589,3 +590,38 @@ from sklearn.preprocessing import scale, normalize, minmax_scale
 # plt.show()
 
 #---------------END Section 43, 44 ML------------------------
+
+
+
+
+#---------------START Section 45 ML------------------------
+
+# iris = datasets.load_iris()
+
+# data = pd.read_csv('iris.csv')
+
+# data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+
+# data.replace({'Setosa':0, 'Versicolor': 1, 'Virginica': 2}, inplace=True) # چون الگوریتم نوشته را نمیفهمد باید تبدیل به عدد کنم ابتدا برچسب ها را
+
+# # plt.scatter(data.petal_length, data.petal_width, c=data.variety)
+
+# # plt.show()
+
+# data_label = np.array(data.variety) # برچسب ها را جدا داخل یک متغییر میریزم و ان را به ارایه معمولی از دیتا فریم برمیگردانیم
+
+# data.drop(['sepal_length', 'sepal_width', 'variety'], axis=1, inplace=True) # با این ویژگی ها کار نداریم پس دور انداخته میشود برچسب را چون قبلا ذخیره کردهایم دیگر نیازی به نگهداشتن نیست
+
+# data_x = np.array(data) # حال داده که پاکسازی شده را به ارایه برمیگردانیم و داخل یک متغیر ذخیره میکنم
+
+# # print(data_x, '\n', data_label)
+
+# knn = KNeighborsClassifier(n_neighbors=6, metric='minkowski', p=2) # حال ابتدا الگوریتم نزدیک ترین همسایه را کانفیگ میکنم ابتدا با مقدار n_neighbors مقدار k را مشخض میکنم
+
+# knn.fit(data_x, data_label) # سپس الگوریتم کانفیگ شده را روی داده های خودمون ذخیره میکنیم اول وردی میشه داده های که با ان کار داریم در اصل بدون برچسب ورودی دوم برچیس ها ما میشود
+
+# predict = knn.predict(np.array([[0.2, 0.8]])) # با استفاده از این تابع داده جدیدی اضافه میکنم و پیشبینی میکنم باید چه برچسبی بگیرد مقدار ارایه باید به تعداد ویژگی های قبلی باشد یعنی به تعداد data_x
+
+# print(predict)
+
+#---------------END Section 45 ML------------------------

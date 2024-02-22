@@ -666,50 +666,50 @@ from sklearn.model_selection import train_test_split
 
 #---------------START Section 47, 48 ML------------------------
 
-data = pd.read_csv('iris.csv')
+# data = pd.read_csv('iris.csv')
 
-data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+# data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
 
-data.replace({'Setosa':0, 'Versicolor': 1, 'Virginica': 2}, inplace=True) # چون الگوریتم نوشته را نمیفهمد باید تبدیل به عدد کنم ابتدا برچسب ها را
+# data.replace({'Setosa':0, 'Versicolor': 1, 'Virginica': 2}, inplace=True) # چون الگوریتم نوشته را نمیفهمد باید تبدیل به عدد کنم ابتدا برچسب ها را
 
 # # plt.scatter(data.petal_length, data.petal_width, c=data.variety)
 
 # # plt.show()
 
-data_label = np.array(data.variety) # برچسب ها را جدا داخل یک متغییر میریزم و ان را به ارایه معمولی از دیتا فریم برمیگردانیم
+# data_label = np.array(data.variety) # برچسب ها را جدا داخل یک متغییر میریزم و ان را به ارایه معمولی از دیتا فریم برمیگردانیم
 
-data.drop(['sepal_length', 'sepal_width', 'variety'], axis=1, inplace=True) # با این ویژگی ها کار نداریم پس دور انداخته میشود برچسب را چون قبلا ذخیره کردهایم دیگر نیازی به نگهداشتن نیست
+# data.drop(['sepal_length', 'sepal_width', 'variety'], axis=1, inplace=True) # با این ویژگی ها کار نداریم پس دور انداخته میشود برچسب را چون قبلا ذخیره کردهایم دیگر نیازی به نگهداشتن نیست
 
-data_x = np.array(data) # حال داده که پاکسازی شده را به ارایه برمیگردانیم و داخل یک متغیر ذخیره میکنم
+# data_x = np.array(data) # حال داده که پاکسازی شده را به ارایه برمیگردانیم و داخل یک متغیر ذخیره میکنم
 
-x_tr, x_te, y_tr, y_te = train_test_split(data_x, data_label, test_size=0.3, shuffle=True) # تقسیم کردن داده ها با قانون 70 30 برای اموزش و تست چهارتا خروجی داره که به ترتیب میشه داده های اموزشی و داده های تست و برچسب های اموزشی و برچسب های تست
+# x_tr, x_te, y_tr, y_te = train_test_split(data_x, data_label, test_size=0.3, shuffle=True) # تقسیم کردن داده ها با قانون 70 30 برای اموزش و تست چهارتا خروجی داره که به ترتیب میشه داده های اموزشی و داده های تست و برچسب های اموزشی و برچسب های تست
 
 # # print(data_x, '\n', data_label)
 
 ############################## توضیح این الگوریتم ابتدا دو ارایه خالی برای تست ها و اموزش ها ساخته شده و در حلقه به میزان لازم حلقه میزند و از n صفر شروع میکند تا 30 و توی مقدار هخای خالی ذخیره میکند و داخل نمودار میاد و برسی میشود بهترین n چند است برای ما
-n = np.arange(1, 31)
+# n = np.arange(1, 31)
 
-tr = np.empty(30)
+# tr = np.empty(30)
 
-te = np.empty(30)
+# te = np.empty(30)
 
 # print(n)
 
-for i in range(30):
+# for i in range(30):
     
-    knn = KNeighborsClassifier(n_neighbors=i+1, metric='minkowski', p=2) # حال ابتدا الگوریتم نزدیک ترین همسایه را کانفیگ میکنم ابتدا با مقدار n_neighbors مقدار k را مشخض میکنم
+#     knn = KNeighborsClassifier(n_neighbors=i+1, metric='minkowski', p=2) # حال ابتدا الگوریتم نزدیک ترین همسایه را کانفیگ میکنم ابتدا با مقدار n_neighbors مقدار k را مشخض میکنم
 
-    knn.fit(x_tr, y_tr) # سپس الگوریتم کانفیگ شده را روی داده های خودمون ذخیره میکنیم اول وردی میشه داده های که با ان کار داریم در اصل بدون برچسب ورودی دوم برچیس ها ما میشود
+#     knn.fit(x_tr, y_tr) # سپس الگوریتم کانفیگ شده را روی داده های خودمون ذخیره میکنیم اول وردی میشه داده های که با ان کار داریم در اصل بدون برچسب ورودی دوم برچیس ها ما میشود
     
-    tr[i] = knn.score(x_tr, y_tr)
+#     tr[i] = knn.score(x_tr, y_tr)
     
-    te[i] = knn.score(x_te, y_te)
+#     te[i] = knn.score(x_te, y_te)
 
-plt.plot(n, tr)
+# plt.plot(n, tr)
 
-plt.plot(n, te)
+# plt.plot(n, te)
 
-plt.show()
+# plt.show()
 
 ############################## اتمام الگوریتم
 

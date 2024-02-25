@@ -9,6 +9,7 @@ from sklearn.preprocessing import scale, normalize, minmax_scale
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
 #---------------START Section 2 ML------------------------
 # np_arr = np.array([[1, 2], [3, 4]])
 
@@ -746,7 +747,7 @@ from sklearn.linear_model import LinearRegression
 
 
 
-#---------------START Section 50 ML------------------------
+#---------------START Section 50, 51 ML------------------------
 
 data = pd.read_csv('boston.csv')
 
@@ -761,15 +762,17 @@ data_normal = minmax_scale(x, feature_range=(0, 1))
 x_tr, x_te, y_tr, y_te = train_test_split(data_normal, label, test_size=0.3, random_state=42)
 
 reg = LinearRegression()
+ 
+reg.fit(x_tr, y_tr) # در این بخش درواقع اموزش داده میشود به مدل داده اول همان داده های اصلی هستند و وردی دوم همان برچسب های ورودی اول هستند
 
-reg.fit(x_tr, y_tr)
-
-y_p = reg.predict(x_te)
+y_p = reg.predict(x_te) # درواقع برای تشخیص اون بخشی از داده که جدا شده است را که به انواع تست است میدهیم وبرچیب را تشخیص میدهد و میریزد داخل یک متغیر
 
 plt.scatter(y_te, y_p)
 
-plt.plot(y_te, y_p, c='red')
+print(mean_squared_error(y_te, y_p)) # در این بخش مقدار خطا مشخص میشود ورودی اول میشود برچسب تست ها ما که جدا شده انند و ورودی دوم همان برچسب های تشخیص داده شده است و حال میزان خطا مشخص میشود
+
+# plt.plot(y_te, y_p, c='red')
 
 plt.show()
 
-#---------------END Section 50 ML------------------------
+#---------------END Section 50, 51 ML------------------------

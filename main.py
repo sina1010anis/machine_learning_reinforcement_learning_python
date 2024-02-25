@@ -7,7 +7,7 @@ from sklearn import preprocessing, datasets
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import scale, normalize, minmax_scale
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 #---------------START Section 2 ML------------------------
@@ -770,6 +770,10 @@ y_p = reg.predict(x_te) # درواقع برای تشخیص اون بخشی از 
 plt.scatter(y_te, y_p)
 
 print(mean_squared_error(y_te, y_p)) # در این بخش مقدار خطا مشخص میشود ورودی اول میشود برچسب تست ها ما که جدا شده انند و ورودی دوم همان برچسب های تشخیص داده شده است و حال میزان خطا مشخص میشود
+
+cv = cross_val_score(reg, data_normal, label, cv=5) # این روش k_fold است (این روش در واقع داده ها را به کا بخش مساوی تقسیم میکند و هر دور یک کا را برای تست و بقیه برای اموزش در نظر گرفته میشود و هر کدوم امتیاز را قرار میدهد)
+
+print(cv)
 
 # plt.plot(y_te, y_p, c='red')
 

@@ -4,8 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sb
 from scipy.stats import pearsonr,chi2_contingency
 from sklearn import preprocessing, datasets
-from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import scale, normalize, minmax_scale
+from sklearn.preprocessing import minmax_scale
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
 
@@ -29,13 +28,16 @@ data.dropna() # حذف داده های خالی که در قبل گفته شد
 
 data_x = np.array(data) # قرار دادن داده ها داخل یک متغییر برای تشخیص
 
+data_normal = minmax_scale(data_x, feature_range=(0, 1)) # قرار دادن داده ها بین عدد صفر و یک برای نرمال سازی
+
+
+#-------------------- KNN ---------------------------
+
 tr_score = np.empty(30)
 
 te_score = np.empty(30)
 
 n = np.arange(1, 31)
-
-data_normal = minmax_scale(data_x, feature_range=(0, 1)) # قرار دادن داده ها بین عدد صفر و یک برای نرمال سازی
 
 for i in range(30):
     

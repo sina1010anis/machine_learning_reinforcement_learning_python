@@ -8,6 +8,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import scale, normalize, minmax_scale
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
 #---------------START Section 2 ML------------------------
 # np_arr = np.array([[1, 2], [3, 4]])
 
@@ -714,3 +715,31 @@ from sklearn.model_selection import train_test_split
 ############################## اتمام الگوریتم
 
 #---------------END Section 47, 48 ML------------------------
+
+
+
+#---------------START Section 49 ML------------------------
+
+iris = datasets.load_iris()
+
+data = pd.read_csv('iris.csv')
+
+data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+
+x = np.array(data.petal_length).reshape(-1, 1)
+
+y = np.array(data.petal_width).reshape(-1, 1)
+
+plt.scatter(x, y)
+
+reg = LinearRegression()
+
+reg.fit(x, y)
+
+y_p = reg.predict(x)
+
+plt.plot(x, y_p)
+
+plt.show()
+
+#---------------END Section 49 ML------------------------

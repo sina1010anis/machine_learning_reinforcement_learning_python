@@ -9,7 +9,7 @@ from sklearn.preprocessing import scale, normalize, minmax_scale
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.linear_model import LinearRegression, Lasso, Ridge, LogisticRegression
-from sklearn.metrics import mean_squared_error, confusion_matrix, classification_report
+from sklearn.metrics import mean_squared_error, confusion_matrix, classification_report, roc_auc_score
 #---------------START Section 2 ML------------------------
 # np_arr = np.array([[1, 2], [3, 4]])
 
@@ -837,24 +837,40 @@ from sklearn.metrics import mean_squared_error, confusion_matrix, classification
 
 
 
-#---------------START Section 55 ML------------------------
+#---------------START Section 55, 56 ML------------------------
 
-data = pd.read_csv('bc.csv')
+# data = pd.read_csv('bc.csv')
 
-label = np.array(data.diagnosis)
+# label = np.array(data.diagnosis)
 
-data.drop(['diagnosis'], axis=1, inplace=True)
+# data.drop(['diagnosis'], axis=1, inplace=True)
 
-data = np.array(data)
+# data_x = np.array(data)
 
-x_tr, x_te, l_tr, l_te = train_test_split(data, label, test_size=0.3, random_state=True)
+# x_tr, x_te, l_tr, l_te = train_test_split(data_x, label, test_size=0.3, random_state=True)
 
-lr = LogisticRegression() # تست LR 
+# lr = LogisticRegression() # تست LR 
 
-lr.fit(x_tr, l_tr)
+# lr.fit(x_tr, l_tr)
 
-l_pre = lr.predict(x_te)
+# l_pre = lr.predict(x_te)
 
-print(confusion_matrix(l_te, l_pre))
+# ############################################ نمایش درصد ROC
 
-#---------------END Section 55 ML------------------------
+# l_pre_pro = lr.predict_proba(x_te)[:,1]
+
+# roc = roc_auc_score(l_te, l_pre_pro)
+
+# print(roc)
+
+# ########################################### نمایش درصدی TP, TN, FP, FN
+
+# cm = confusion_matrix(l_te, l_pre)
+
+# cm = normalize(cm, norm='l1', axis=1)
+
+# cm_df = pd.DataFrame(cm, columns=['B', 'M'], index=['B', 'M'])
+
+# print(cm_df)
+
+#---------------END Section 55, 56 ML------------------------

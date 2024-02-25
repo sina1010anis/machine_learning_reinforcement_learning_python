@@ -8,8 +8,8 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import scale, normalize, minmax_scale
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split, cross_val_score
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error
+from sklearn.linear_model import LinearRegression, Lasso, Ridge
+from sklearn.metrics import mean_squared_error, confusion_matrix, classification_report
 #---------------START Section 2 ML------------------------
 # np_arr = np.array([[1, 2], [3, 4]])
 
@@ -747,36 +747,90 @@ from sklearn.metrics import mean_squared_error
 
 
 
-#---------------START Section 50, 51 ML------------------------
+#---------------START Section 50, 51, 52, 53 ML------------------------
 
-data = pd.read_csv('boston.csv')
+# data = pd.read_csv('boston.csv')
 
-label = np.array(data.medv)
+# label = np.array(data.medv)
 
-data.drop(['medv'], axis=1, inplace=True)
+# data.drop(['medv'], axis=1, inplace=True)
 
-x = np.array(data)
+# x = np.array(data)
 
-data_normal = minmax_scale(x, feature_range=(0, 1))
+# data_normal = minmax_scale(x, feature_range=(0, 1))
 
-x_tr, x_te, y_tr, y_te = train_test_split(data_normal, label, test_size=0.3, random_state=42)
+# x_tr, x_te, y_tr, y_te = train_test_split(data_normal, label, test_size=0.3, random_state=42)
 
-reg = LinearRegression()
+# reg = LinearRegression()
  
-reg.fit(x_tr, y_tr) # در این بخش درواقع اموزش داده میشود به مدل داده اول همان داده های اصلی هستند و وردی دوم همان برچسب های ورودی اول هستند
+# reg.fit(x_tr, y_tr) # در این بخش درواقع اموزش داده میشود به مدل داده اول همان داده های اصلی هستند و وردی دوم همان برچسب های ورودی اول هستند
 
-y_p = reg.predict(x_te) # درواقع برای تشخیص اون بخشی از داده که جدا شده است را که به انواع تست است میدهیم وبرچیب را تشخیص میدهد و میریزد داخل یک متغیر
+# y_p = reg.predict(x_te) # درواقع برای تشخیص اون بخشی از داده که جدا شده است را که به انواع تست است میدهیم وبرچیب را تشخیص میدهد و میریزد داخل یک متغیر
 
-plt.scatter(y_te, y_p)
+# plt.scatter(y_te, y_p)
 
-print(mean_squared_error(y_te, y_p)) # در این بخش مقدار خطا مشخص میشود ورودی اول میشود برچسب تست ها ما که جدا شده انند و ورودی دوم همان برچسب های تشخیص داده شده است و حال میزان خطا مشخص میشود
+# print('Error ', mean_squared_error(y_te, y_p)) # در این بخش مقدار خطا مشخص میشود ورودی اول میشود برچسب تست ها ما که جدا شده انند و ورودی دوم همان برچسب های تشخیص داده شده است و حال میزان خطا مشخص میشود
 
-cv = cross_val_score(reg, data_normal, label, cv=5) # این روش k_fold است (این روش در واقع داده ها را به کا بخش مساوی تقسیم میکند و هر دور یک کا را برای تست و بقیه برای اموزش در نظر گرفته میشود و هر کدوم امتیاز را قرار میدهد)
+# cv = cross_val_score(reg, data_normal, label, cv=5) # این روش k_fold است (این روش در واقع داده ها را به کا بخش مساوی تقسیم میکند و هر دور یک کا را برای تست و بقیه برای اموزش در نظر گرفته میشود و هر کدوم امتیاز را قرار میدهد)
 
-print(cv)
+# print('CV ', cv)
 
-# plt.plot(y_te, y_p, c='red')
+# lasso = Lasso(alpha=0.1) # با این کلاس ما متوه میشویم کدام ویژگی برای برچسبب مورد نظر ما مهم است یا نه 
 
-plt.show()
+# lasso.fit(x_tr, y_tr) # داده های اموزشی را فیت میکنیم با برچسب ها
 
-#---------------END Section 50, 51 ML------------------------
+# lasso_co = lasso.coef_  # با این مقدار ما میبینم کدام ویژگی مهم است کدام مهم نیست با عدد صفر و بالای صفر
+
+# lasso_pre = lasso.predict(x_te) # تشخیص درست
+
+# print('Lasso MES ', mean_squared_error(y_te, lasso_pre)) # یا این کلاس ما متوجه میشویم چقدر خطا داشته ایم
+
+# print('Lasso CO ', lasso_co)
+
+# ri = Ridge(alpha=0.1)  # مثل بالا فقط با این فرق که ویژگی های که مهم نیست را صفر نمیزارد و با یک عدد کم جایگژزین میکمند درواقع میزان اهمیت هر کدام از ویژگی ها را مشخص میکند
+
+# ri.fit(x_tr, y_tr) # مثل بالا فقط با این فرق که ویژگی های که مهم نیست را صفر نمیزارد و با یک عدد کم جایگژزین میکمند درواقع میزان اهمیت هر کدام از ویژگی ها را مشخص میکند
+
+# ri_pre = ri.predict(x_te) # مثل بالا فقط با این فرق که ویژگی های که مهم نیست را صفر نمیزارد و با یک عدد کم جایگژزین میکمند درواقع میزان اهمیت هر کدام از ویژگی ها را مشخص میکند
+
+# ri_co = ri.coef_ # مثل بالا فقط با این فرق که ویژگی های که مهم نیست را صفر نمیزارد و با یک عدد کم جایگژزین میکمند درواقع میزان اهمیت هر کدام از ویژگی ها را مشخص میکند
+
+# print('Ridge MES ', mean_squared_error(y_te, ri_pre)) # مثل بالا فقط با این فرق که ویژگی های که مهم نیست را صفر نمیزارد و با یک عدد کم جایگژزین میکمند درواقع میزان اهمیت هر کدام از ویژگی ها را مشخص میکند
+
+# print('Ridge CO ', ri_co)
+
+# # plt.plot(y_te, y_p, c='red')
+
+# plt.show()
+
+#---------------END Section 50, 51, 52, 53 ML------------------------
+
+
+
+#---------------START Section 54 ML------------------------
+
+# data = pd.read_csv('bc.csv')
+
+# label = np.array(data.diagnosis)
+
+# data.drop(['diagnosis'], axis=1, inplace=True)
+
+# data = np.array(data)
+
+# x_tr, x_te, l_tr, l_te = train_test_split(data, label, test_size=0.3, random_state=True)
+
+# knn = KNeighborsClassifier(n_neighbors=6)
+
+# knn.fit(x_tr, l_tr)
+
+# l_pre = knn.predict(x_te)
+
+# CM = confusion_matrix(l_te, l_pre) # میاد اون ماتریس TP , TN , FP , FN رومیده
+
+# print('CM ', CM, '\n')
+
+# CR = classification_report(l_te, l_pre) # مقدار ها F1, accuracy ,... رومیده
+
+# print('CR ',CR)
+
+#---------------END Section 54 ML------------------------

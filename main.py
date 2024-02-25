@@ -720,26 +720,56 @@ from sklearn.linear_model import LinearRegression
 
 #---------------START Section 49 ML------------------------
 
-iris = datasets.load_iris()
+# iris = datasets.load_iris()
 
-data = pd.read_csv('iris.csv')
+# data = pd.read_csv('iris.csv')
 
-data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+# data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
 
-x = np.array(data.petal_length).reshape(-1, 1)
+# x = np.array(data.petal_length).reshape(-1, 1)
 
-y = np.array(data.petal_width).reshape(-1, 1)
+# y = np.array(data.petal_width).reshape(-1, 1)
 
-plt.scatter(x, y)
+# plt.scatter(x, y)
+
+# reg = LinearRegression()
+
+# reg.fit(x, y)
+
+# y_p = reg.predict(x)
+
+# plt.plot(x, y_p, c='red')
+
+# plt.show()
+
+#---------------END Section 49 ML------------------------
+
+
+
+#---------------START Section 50 ML------------------------
+
+data = pd.read_csv('boston.csv')
+
+label = np.array(data.medv)
+
+data.drop(['medv'], axis=1, inplace=True)
+
+x = np.array(data)
+
+data_normal = minmax_scale(x, feature_range=(0, 1))
+
+x_tr, x_te, y_tr, y_te = train_test_split(data_normal, label, test_size=0.3, random_state=42)
 
 reg = LinearRegression()
 
-reg.fit(x, y)
+reg.fit(x_tr, y_tr)
 
-y_p = reg.predict(x)
+y_p = reg.predict(x_te)
 
-plt.plot(x, y_p)
+plt.scatter(y_te, y_p)
+
+plt.plot(y_te, y_p, c='red')
 
 plt.show()
 
-#---------------END Section 49 ML------------------------
+#---------------END Section 50 ML------------------------

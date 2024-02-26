@@ -7,7 +7,7 @@ from sklearn import preprocessing, datasets
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import scale, normalize, minmax_scale
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
 from sklearn.linear_model import LinearRegression, Lasso, Ridge, LogisticRegression
 from sklearn.metrics import mean_squared_error, confusion_matrix, classification_report, roc_auc_score
 #---------------START Section 2 ML------------------------
@@ -874,3 +874,31 @@ from sklearn.metrics import mean_squared_error, confusion_matrix, classification
 # print(cm_df)
 
 #---------------END Section 55, 56 ML------------------------
+
+
+
+#---------------START Section 57 ML------------------------
+
+# data = pd.read_csv('iris.csv')
+
+# data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+
+# data_label = np.array(data.variety) # برچسب ها را جدا داخل یک متغییر میریزم و ان را به ارایه معمولی از دیتا فریم برمیگردانیم
+
+# data.drop(['sepal_length', 'sepal_width', 'variety'], axis=1, inplace=True) # با این ویژگی ها کار نداریم پس دور انداخته میشود برچسب را چون قبلا ذخیره کردهایم دیگر نیازی به نگهداشتن نیست
+
+# data_x = np.array(data) # حال داده که پاکسازی شده را به ارایه برمیگردانیم و داخل یک متغیر ذخیره میکنم
+
+# knn = KNeighborsClassifier() # حال ابتدا الگوریتم نزدیک ترین همسایه را کانفیگ میکنم ابتدا با مقدار n_neighbors مقدار k را مشخض میکنم
+
+# p_gird = {'n_neighbors' : np.arange(1, 50)}
+
+# knn_cv = GridSearchCV(knn, p_gird, cv=5) # این کلاس درواقع بهترین مقدار برای یک مدل رو میده مثلا در این با مدل نزدیک ترین همسایه تست شده وردی اول همان مدل ما هستش ورودی دوم یک دیکشنری هست که وردی های اصلی اون بر حسب مقدار هاست رو میگیره که ما میتوان مقدار های مختلفی به اون بدیم و تست کنه
+
+# knn_cv.fit(data_x, data_label) # سپس الگوریتم کانفیگ شده را روی داده های خودمون ذخیره میکنیم اول وردی میشه داده های که با ان کار داریم در اصل بدون برچسب ورودی دوم برچیس ها ما میشود
+
+# print(knn_cv.best_params_) # این مقدار بهترین مقدار را نمایش میدهد مثلا در روش نزدیکتری همسایه بهترین کا رو میده
+
+# print(knn_cv.best_score_) # در این مقدار بهتیرین امتیاز رو به درصد میده
+
+#---------------END Section 57 ML------------------------

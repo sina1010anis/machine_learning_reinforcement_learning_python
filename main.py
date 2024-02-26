@@ -10,6 +10,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
 from sklearn.linear_model import LinearRegression, Lasso, Ridge, LogisticRegression
 from sklearn.metrics import mean_squared_error, confusion_matrix, classification_report, roc_auc_score
+from sklearn.naive_bayes import GaussianNB
 #---------------START Section 2 ML------------------------
 # np_arr = np.array([[1, 2], [3, 4]])
 
@@ -902,3 +903,26 @@ from sklearn.metrics import mean_squared_error, confusion_matrix, classification
 # print(knn_cv.best_score_) # در این مقدار بهتیرین امتیاز رو به درصد میده
 
 #---------------END Section 57 ML------------------------
+
+
+#---------------START Section 58, 59, 60 ML------------------------
+
+data = pd.read_csv('iris.csv')
+
+data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+
+data_label = np.array(data.variety) # برچسب ها را جدا داخل یک متغییر میریزم و ان را به ارایه معمولی از دیتا فریم برمیگردانیم
+
+data.drop(['variety'], axis=1, inplace=True) # با این ویژگی ها کار نداریم پس دور انداخته میشود برچسب را چون قبلا ذخیره کردهایم دیگر نیازی به نگهداشتن نیست
+
+data_x = np.array(data) # حال داده که پاکسازی شده را به ارایه برمیگردانیم و داخل یک متغیر ذخیره میکنم
+
+x_tr, x_te, l_tr, l_te = train_test_split(data_x, data_label, test_size=0.3, random_state=True)
+
+gnb = GaussianNB() # استفاغد ه از روش NB
+
+gnb.fit(x_tr, l_tr)
+
+l_pre = gnb.predict(x_te)
+
+#---------------END Section 58, 59, 60 ML------------------------

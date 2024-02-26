@@ -11,7 +11,7 @@ from sklearn.model_selection import train_test_split, cross_val_score, GridSearc
 from sklearn.linear_model import LinearRegression, Lasso, Ridge, LogisticRegression
 from sklearn.metrics import mean_squared_error, confusion_matrix, classification_report, roc_auc_score
 from sklearn.naive_bayes import GaussianNB
-from sklearn.cluster import KMeans
+from sklearn.cluster import KMeans, DBSCAN
 #---------------START Section 2 ML------------------------
 # np_arr = np.array([[1, 2], [3, 4]])
 
@@ -975,3 +975,29 @@ from sklearn.cluster import KMeans
 # plt.show()
 
 #---------------END Section 61, 62 ML------------------------
+
+
+
+#---------------START Section 63, 64, 65 ML------------------------
+
+# data = pd.read_csv('iris.csv')
+
+# data.rename(columns={'sepal.length' : 'sepal_length', 'sepal.width' : 'sepal_width', 'petal.length' : 'petal_length', 'petal.width' : 'petal_width'}, inplace=True)
+
+# data_label = np.array(data.variety) # برچسب ها را جدا داخل یک متغییر میریزم و ان را به ارایه معمولی از دیتا فریم برمیگردانیم
+
+# data.drop(['variety'], axis=1, inplace=True) # با این ویژگی ها کار نداریم پس دور انداخته میشود برچسب را چون قبلا ذخیره کردهایم دیگر نیازی به نگهداشتن نیست
+
+# data_x = np.array(data) # حال داده که پاکسازی شده را به ارایه برمیگردانیم و داخل یک متغیر ذخیره میکنم
+
+# DB = DBSCAN()
+
+# DB.fit(data_x)
+
+# labels = DB.labels_
+
+# plt.scatter(data_x[:,2], data_x[:,3], c=labels)
+
+# plt.show()
+
+#---------------END Section 63, 64, 65 ML------------------------

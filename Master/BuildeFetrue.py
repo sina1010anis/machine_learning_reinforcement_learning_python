@@ -1,6 +1,9 @@
 import pandas as pd
 import numpy as np
 
+address_file = 'Catchphish/CatchPhish_D3.csv'
+address_new_file = 'Catchphish/CatchPhish_D3_My_Edit.csv'
+
 def int_bool(string):
     return int(bool(string))
 
@@ -20,25 +23,24 @@ def catSubdomin(string):
 def catPath(string):
     # return len(string.split('/'))
     if len(string.split('/')) > 3:
-        new_str = string.split('/')[3].split('#')
-        return new_str[0]
+        new_str = string.split('/')[3:]
+        new_str = '/'.join(new_str).split('#')[0]
+        return new_str
     else:
         return ''
-
     
+    
+def catParams(string):
+    new_string = ''
+    for i in range(len(string)):
+        if string[i] == '#':
+            new_string = string[i+1:]
 
+    return new_string
 
-
-
-
-
-data = pd.read_csv('Catchphish/CatchPhish_D1.csv')
+data = pd.read_csv(address_file)
 
 data_arr = np.array(data)
-
-string = 'http://pawno.su'
-
-print(catPath(string))
 
 for i in range(len(data_arr)):
 
@@ -164,14 +166,56 @@ for i in range(len(data_arr)):
             data_arr[i][23] = 1
             break
         else:
-            data_arr[i][23] = 0    
-    
+            data_arr[i][23] = 0 
 
 
-    print(i)
+    #### Len_params (24)
+    data_arr[i][24] = len(catParams(url)) 
+
+
+
+    #### Dot_path (25)
+    data_arr[i][25] = catPath(url).count('.')
+
+
+    #### Hyphen_path (26)
+    data_arr[i][26] = catPath(url).count('-')
+
+
+
+    #### Slash_path (27)
+    data_arr[i][27] = catPath(url).count('/')
+
+
+    #### Len_path (28)
+    data_arr[i][28] = len(catPath(url))
+
+
+    #### Brand_path (29)
+    data_arr[i][29] = 0
+
+
+    #### Digits_path (30)
+    data_arr[i][30] = catPath(url).count('0')+catPath(url).count('1')+catPath(url).count('2')+catPath(url).count('3')+catPath(url).count('4')+catPath(url).count('5')+catPath(url).count('6')+catPath(url).count('7')+catPath(url).count('8')+catPath(url).count('9')
+
+
+
+    #### Entropy_path (31)
+    data_arr[i][31] = 0
+
     
 data = pd.DataFrame(data_arr, columns=data.columns, index=data.index)
 
-print('\n', data_arr[0][23])
+data.to_csv(address_new_file)
+
+print('\n', data)
+
+
+
+
+
+
+
+
 # for i in np.arange(1, len(data)):
 #     print(i,'\n')

@@ -1,8 +1,13 @@
 import pandas as pd
 import numpy as np
+import re
 
 address_file = 'Catchphish/CatchPhish_D3.csv'
 address_new_file = 'Catchphish/CatchPhish_D3_My_Edit.csv'
+addres_com = 'Catchphish/Com.csv'
+
+com = np.array(pd.read_csv(addres_com).drop(['Rank', 'Country', 'Sales($millions)', 'Profits($millions)', 'Assets($millions)', 'Market Value As of 05/05/23 ($m)'], axis=1))
+
 
 def int_bool(string):
     return int(bool(string))
@@ -38,9 +43,30 @@ def catParams(string):
 
     return new_string
 
+def emailExist(string):
+    match = re.findall(r'[\w.+-]+@[\w-]+\.[\w.-]+', string)
+    return match
+
+def catFile(string):
+    notAL = string.split('?')[0].split('/')
+    leng = len(notAL) - 1 
+    return notAL[leng]
+
+def catHost(string):
+    n = string.split('/')[2:3]
+    return n[0]
+
+
+
 data = pd.read_csv(address_file)
 
+
 data_arr = np.array(data)
+
+# string = "https://wwww.dichickoscafe.com//(~@/&)confirmsecsina1010anis@gmail.comu-r01--2345678910.com#btn"
+
+# print(catHost(string))
+
 
 for i in range(len(data_arr)):
 
@@ -78,7 +104,7 @@ for i in range(len(data_arr)):
 
 
     #### Email_exist (7)
-    data_arr[i][7] = 0
+    data_arr[i][7] = int_bool(emailExist(url))
 
 
     #### Protocol_url (8)
@@ -137,6 +163,10 @@ for i in range(len(data_arr)):
 
     #### Brand_host (17)
     data_arr[i][17] = 0
+    # for iiv in com:
+    #     if catHost(url).count(str(iiv)):
+    #         data_arr[i][17] = 1
+    
 
 
     #### Host_large_tok (18)
@@ -152,7 +182,7 @@ for i in range(len(data_arr)):
 
 
     #### Len_fle (21)
-    data_arr[i][21] = 0  
+    data_arr[i][21] = len(catFile(catPath(url))) 
 
 
     #### Extension (22)
@@ -203,12 +233,15 @@ for i in range(len(data_arr)):
     #### Entropy_path (31)
     data_arr[i][31] = 0
 
+
+    # print(i)
+
     
 data = pd.DataFrame(data_arr, columns=data.columns, index=data.index)
 
 data.to_csv(address_new_file)
 
-print('\n', data)
+print('\n', data_arr[0][17])
 
 
 

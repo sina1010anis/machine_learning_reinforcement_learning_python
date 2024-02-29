@@ -2,11 +2,11 @@ import pandas as pd
 import numpy as np
 import re
 
-address_file = 'Catchphish/CatchPhish_D3.csv'
-address_new_file = 'Catchphish/CatchPhish_D3_My_Edit.csv'
-addres_com = 'Catchphish/Com.csv'
+address_file = 'Catchphish/CatchPhish_D1.csv'
+address_new_file = 'Catchphish/CatchPhish_D1_My_Edit.csv'
+# addres_com = 'Catchphish/Com.csv'
 
-com = np.array(pd.read_csv(addres_com).drop(['Rank', 'Country', 'Sales($millions)', 'Profits($millions)', 'Assets($millions)', 'Market Value As of 05/05/23 ($m)'], axis=1))
+# com = np.array(pd.read_csv(addres_com).drop(['Rank', 'Country', 'Sales($millions)', 'Profits($millions)', 'Assets($millions)', 'Market Value As of 05/05/23 ($m)'], axis=1))
 
 
 def int_bool(string):
@@ -60,12 +60,11 @@ def catHost(string):
 
 data = pd.read_csv(address_file)
 
-
 data_arr = np.array(data)
 
-# string = "https://wwww.dichickoscafe.com//(~@/&)confirmsecsina1010anis@gmail.comu-r01--2345678910.com#btn"
+string = "https://wwww.dichickoscafe.com//(~@/&)confirmsecsina1010anis@gmail.comu-r01--2345678910.com#btn"
 
-# print(catHost(string))
+print(catParams(string))
 
 
 for i in range(len(data_arr)):
@@ -145,8 +144,7 @@ for i in range(len(data_arr)):
 
 
     #### Dot_host (14)
-    new_str = str(dotInHost(url))
-    data_arr[i][14] = new_str.count('.')
+    data_arr[i][14] = catHost(url).count('.')
 
 
 
@@ -241,7 +239,7 @@ data = pd.DataFrame(data_arr, columns=data.columns, index=data.index)
 
 data.to_csv(address_new_file)
 
-print('\n', data_arr[0][17])
+print('\n', data_arr[0][14])
 
 
 

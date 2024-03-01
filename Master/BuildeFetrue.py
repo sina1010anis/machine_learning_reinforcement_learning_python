@@ -2,8 +2,8 @@ import pandas as pd
 import numpy as np
 import re
 
-address_file = 'Catchphish/CatchPhish_D1.csv'
-address_new_file = 'Catchphish/CatchPhish_D1_My_Edit.csv'
+address_file = ''
+address_new_file = ''
 # addres_com = 'Catchphish/Com.csv'
 
 # com = np.array(pd.read_csv(addres_com).drop(['Rank', 'Country', 'Sales($millions)', 'Profits($millions)', 'Assets($millions)', 'Market Value As of 05/05/23 ($m)'], axis=1))

@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, classification_report, roc_auc_score
 
-def buildData(address_file):
+def buildData(address_file, data_drop_items=[]):
 
     data = pd.read_csv(address_file)
 
@@ -11,15 +11,25 @@ def buildData(address_file):
 
     labels = np.array(data.label)
 
-    data.drop(['label', 'URL'], axis=1, inplace=True)
+    data_drop = ['label', 'URL']
+
+    if len(data_drop_items) > 0:
+
+        for i in data_drop_items:
+
+            data_drop.append(i)
+
+    data.drop(data_drop, axis=1, inplace=True)
 
     data_x = np.array(data)
 
     x_tr, x_te, l_tr, l_te = train_test_split(data, labels, test_size=0.3, random_state=True)
 
+    # x_tr, x_te, l_tr, l_te = train_test_split(data, labels, test_size=0.3, shuffle=True)
+
     return x_tr, x_te, l_tr, l_te, data_x, labels, data
 
-def score(method, x_te, l_te, l_pre):
+def score(method, x_te, l_te, l_pre, mode='print'):
 
     cnf_matrix = confusion_matrix(l_te, l_pre)
 
@@ -38,27 +48,34 @@ def score(method, x_te, l_te, l_pre):
     TP = TP.astype(float)
     TN = TN.astype(float)
     F1 = (2*TP)/((2*TP)+FP+FN)
-
     TPR = (TP/(TP+FN))*100
-    print("TPR", '(',round(TPR[0], 2),')')
-
     FPR =(FP/(FP+TN))*100
-    print("FPR", '(',round(FPR[0], 2),')')
-
     TNR =(TN/(TN+FP))*100
-    print("TNR", '(',round(TNR[0], 2),')')
-
     FNR =(FN/(TP+FN))*100
-    print("FNR", '(',round(FNR[0], 2),')')
-
     Precision =(TP/(TP+FP))*100
-    print("Precision", '(',round(Precision[0], 2),')')
-
-    print("F1-score", '(',round(F1[0]*100, 2),')')
-
-    print("ROC", '(',round(roc*100, 2),')')
-
     ACC =((TP+TN)/(TP+FP+FN+TN))*100
-    print("Accuracy", '(',round(ACC[0], 2),')')
+    score = method.score(x_te, l_te)*100
+    if mode == 'print':
 
-    print("Score", '(',round(method.score(x_te, l_te)*100, 2),')')
+        print("TPR", '(',round(TPR[0], 2),')')
+
+        print("FPR", '(',round(FPR[0], 2),')')
+
+        print("TNR", '(',round(TNR[0], 2),')')
+
+        print("FNR", '(',round(FNR[0], 2),')')
+
+        print("Precision", '(',round(Precision[0], 2),')')
+
+        print("F1-score", '(',round(F1[0]*100, 2),')')
+
+        print("ROC", '(',round(roc*100, 2),')')
+
+        print("Accuracy", '(',round(ACC[0], 2),')')
+
+        print("Score", '(',round(score, 2),')')
+
+    elif mode == 'return':
+
+        return [round(TPR[0], 2), round(FPR[0], 2), round(TNR[0], 2), round(FNR[0],2 ), round(Precision[0], 2), round(F1[0]*100, 2), round(roc*100, 2),round(ACC[0], 2),round(score, 2)]
+

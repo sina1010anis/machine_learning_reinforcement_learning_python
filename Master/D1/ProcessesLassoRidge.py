@@ -25,7 +25,7 @@ for i in range(len(ri.coef_)):
 
 # Ridge ['amp_greater_equal', 'delims_url', 'len_url', 'email_exist', 'protocol_url', 'digits_url', 'brand_host', 'host_large_tok', 'len_path', 'digits_path']
         
-# Ridge ['at_url', 'amp_greater_equal', 'delims_url', 'other_delims_url', 'len_url', 'email_exist', 'protocol_url', 'suspwords_url', 'tiny_url', 'digits_url', 'entropy_url', 'dot_host', 'len_subdomain', 'having_https', 'brand_host', 'host_large_tok', 'path_large_tok', 'dot_path', 'slash_path', 'len_path', 'brand_path', 'digits_path', 'len_file', 'extension', 'delims_params', 'len_params', 'ratio_url_path']
+# Lasso ['at_url', 'amp_greater_equal', 'delims_url', 'other_delims_url', 'len_url', 'email_exist', 'protocol_url', 'suspwords_url', 'tiny_url', 'digits_url', 'entropy_url', 'dot_host', 'len_subdomain', 'having_https', 'brand_host', 'host_large_tok', 'path_large_tok', 'dot_path', 'slash_path', 'len_path', 'brand_path', 'digits_path', 'len_file', 'extension', 'delims_params', 'len_params', 'ratio_url_path']
 
 print(fetrue_drop)
 

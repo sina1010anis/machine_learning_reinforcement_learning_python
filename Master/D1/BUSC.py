@@ -23,7 +23,7 @@ def buildData(address_file, data_drop_items=[]):
 
     data_x = np.array(data)
 
-    x_tr, x_te, l_tr, l_te = train_test_split(data, labels, test_size=0.3, random_state=True)
+    x_tr, x_te, l_tr, l_te = train_test_split(data, labels, test_size=0.3, random_state=42)
 
     # x_tr, x_te, l_tr, l_te = train_test_split(data, labels, test_size=0.3, shuffle=True)
 

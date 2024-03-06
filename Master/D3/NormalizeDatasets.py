@@ -4,9 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sb
 
-path_file = 'CatchPhish_D3.csv'
-
-path_new_file = 'CatchPhish_D3_normal.csv'
+path_file = 'CatchPhish_D1.csv'
 
 data = pd.read_csv(path_file)
 
@@ -24,6 +22,6 @@ data_normal = minmax_scale(data, feature_range=(0, 1))
 
 data = pd.DataFrame(data_normal, columns=data.columns, index=data.index)
 
-data.to_csv(path_new_file)
+data.to_csv(path_file)
 
 print(data)

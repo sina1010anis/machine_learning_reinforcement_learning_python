@@ -7,7 +7,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.metrics import mean_squared_error, confusion_matrix, classification_report, roc_auc_score
 
-data = pd.read_csv('CatchPhish_D3_normal.csv')
+data = pd.read_csv('CatchPhish_D1_normal.csv')
 
 data.rename(index=data.URL, inplace=True)
 
@@ -25,7 +25,6 @@ score_print = []
 
 n = np.arange(30)
 
-
 for i in n:
 
     knn = KNeighborsClassifier(n_neighbors=i+1)
@@ -40,19 +39,17 @@ for i in n:
 
     print(i)
 
-print(score_print)
-
 plt.plot(n, score)
 
 plt.xlabel('K')
 
-plt.text(5, 0.8767449238578681, 'Best score')
+plt.text(11, 0.943000238492726, 'Best score')
 
 plt.grid()
 
 plt.legend(['Score'], loc='best')
 
-plt.scatter(4, 0.8767449238578681, marker='o', c='red', s=120)
+plt.scatter(10, 0.943000238492726, marker='o', c='red', s=120)
 
 plt.title('KNN Best K')
 

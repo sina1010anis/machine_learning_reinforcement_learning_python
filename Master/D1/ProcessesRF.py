@@ -11,7 +11,7 @@ def benchmark():
 
     rf = RandomForestClassifier(n_estimators=150, max_leaf_nodes=3000)
 
-    print('n_estimators=150, max_leaf_nodes=3000')
+    # print('n_estimators=150, max_leaf_nodes=3000')
 
     rf.fit(x_tr, l_tr)
 

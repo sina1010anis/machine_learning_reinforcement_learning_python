@@ -23,7 +23,8 @@ def buildData(address_file, data_drop_items=[]):
 
     data_x = np.array(data)
 
-    x_tr, x_te, l_tr, l_te = train_test_split(data, labels, test_size=0.3, random_state=42)
+    x_tr, x_te, l_tr, l_te = train_test_split(data, labels, test_size=0.1, train_size=0.9, random_state=42) # Train = 90% & Test = 10%
+    # x_tr, x_te, l_tr, l_te = train_test_split(data, labels, test_size=0.3, train_size=0.7, random_state=42) # Train = 70% & Test = 30%
 
     # x_tr, x_te, l_tr, l_te = train_test_split(data, labels, test_size=0.3, shuffle=True)
 
@@ -35,9 +36,9 @@ def score(method, x_te, l_te, l_pre, mode='print'):
 
     cr = classification_report(l_te, l_pre)
 
-    l_pre_pro = method.predict_proba(x_te)[:,1]
+    # l_pre_pro = method.predict_proba(x_te)[:,1]
 
-    roc = roc_auc_score(l_te, l_pre_pro)
+    # roc = roc_auc_score(l_te, l_pre_pro)
 
     FP = cnf_matrix.sum(axis=0) - np.diag(cnf_matrix)
     FN = cnf_matrix.sum(axis=1) - np.diag(cnf_matrix)
@@ -69,7 +70,7 @@ def score(method, x_te, l_te, l_pre, mode='print'):
 
         print("F1-score", '(',round(F1[0]*100, 2),')')
 
-        print("ROC", '(',round(roc*100, 2),')')
+        # print("ROC", '(',round(roc*100, 2),')')
 
         print("Accuracy", '(',round(ACC[0], 2),')')
 

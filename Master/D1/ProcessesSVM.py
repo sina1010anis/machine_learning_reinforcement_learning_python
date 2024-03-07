@@ -31,4 +31,4 @@ def showPlot():
 
     return BUSC.score(S, x_te, l_te, l_pre, mode='return')
 
-# benchmark()
+benchmark()

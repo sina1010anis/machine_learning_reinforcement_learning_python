@@ -7,7 +7,7 @@ import BUSC
 
 def benchmark():
 
-    x_tr, x_te, l_tr, l_te, data_x, labels, data = BUSC.buildData('CatchPhish_D1_normal.csv')
+    x_tr, x_te, l_tr, l_te, data_x, labels, data = BUSC.buildData('CatchPhish_D2_normal.csv')
 
     ab = AdaBoostClassifier(n_estimators=150, learning_rate=0.5)
 
@@ -22,7 +22,7 @@ def benchmark():
 
 def showPlot():
 
-    x_tr, x_te, l_tr, l_te, data_x, labels, data = BUSC.buildData('CatchPhish_D1_normal.csv')
+    x_tr, x_te, l_tr, l_te, data_x, labels, data = BUSC.buildData('CatchPhish_D2_normal.csv')
 
     ab = AdaBoostClassifier(n_estimators=150, learning_rate=0.5)
 

@@ -1,8 +1,9 @@
-# import numpy as np
-# import pandas as pd
+import numpy as np
+import pandas as pd
 # import matplotlib.pyplot as plt
 from sklearn.neighbors import KNeighborsClassifier
 import BUSC
+from sklearn.model_selection import cross_val_score
 
 
 def benchmark():
@@ -32,7 +33,7 @@ def showPlot():
 
 
 
-# benchmark()
+benchmark()
 
 
 

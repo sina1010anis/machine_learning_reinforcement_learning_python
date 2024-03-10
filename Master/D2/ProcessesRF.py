@@ -7,11 +7,11 @@ import BUSC
 
 def benchmark():
 
-    x_tr, x_te, l_tr, l_te, data_x, labels, data = BUSC.buildData('CatchPhish_D1_normal.csv')
+    x_tr, x_te, l_tr, l_te, data_x, labels, data = BUSC.buildData('CatchPhish_D2_normal.csv')
 
-    rf = RandomForestClassifier(n_estimators=150, max_leaf_nodes=3000)
+    rf = RandomForestClassifier(n_estimators=200, max_leaf_nodes=4000)
 
-    print('n_estimators=150, max_leaf_nodes=3000')
+    print('n_estimators=300, max_leaf_nodes=2000')
 
     rf.fit(x_tr, l_tr)
 
@@ -22,9 +22,9 @@ def benchmark():
 
 def showPlot():
 
-    x_tr, x_te, l_tr, l_te, data_x, labels, data = BUSC.buildData('CatchPhish_D1_normal.csv')
+    x_tr, x_te, l_tr, l_te, data_x, labels, data = BUSC.buildData('CatchPhish_D2_normal.csv')
 
-    rf = RandomForestClassifier(n_estimators=200, max_leaf_nodes=4000)
+    rf = RandomForestClassifier()
 
     rf.fit(x_tr, l_tr)
 

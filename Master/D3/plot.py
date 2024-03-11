@@ -17,7 +17,7 @@ n = np.arange(len(S_KNN))
 
 plt.subplot(1, 2, 1)
 
-plt.title('CatchPhish D1 (My Score)')
+plt.title('CatchPhish D3 (My Score)')
 
 plt.plot(n, S_KNN, marker='o', linewidth=2)
 
@@ -29,7 +29,7 @@ plt.plot(n, S_RF, marker='o', linewidth=2)
 
 plt.plot(n, S_ADA, marker='o', linewidth=2)
 
-plt.plot(n, [93.88, 5.09, 94.3, 6.16, 94.59, 94.84, 97.2, 94.7,94.7], marker='o', linewidth=2)
+plt.plot(n, [93.88,25.85,74.15,6.12,88.51,91.11,81.2,87.5,87.5], marker='o', linewidth=2)
 
 plt.xticks(n, ['TPR', 'FPR', 'TNR', 'FNR', 'Precision', 'F1_score', 'ROC', 'Accuracy', 'Score'])
 
@@ -45,19 +45,19 @@ plt.xticks(n, ['TPR', 'FPR', 'TNR', 'FNR', 'Precision', 'F1_score', 'ROC', 'Accu
 
 plt.subplot(1, 2, 2)
 
-plt.title('CatchPhish D1 (Arc Score)')
+plt.title('CatchPhish D3 (Arc Score)')
 
-plt.plot(n, [91.8,5.5, 94.5, 8.2,94.1,92.9,93.9,93.19,93.19], marker='o', linewidth=2)
+plt.plot(n, [81.1,8.4,91.6,18.9,82.1,81.6,87.5,88.9,88.9], marker='o', linewidth=2)
 
-plt.plot(n, [90, 5.1,94.9,9.1,94.4,92.6,97,92.93,92.93], marker='o', linewidth=2)
+plt.plot(n, [66,6,94.0,34,83.9,73.9,90.7,85.01,85.01], marker='o', linewidth=2)
 
-plt.plot(n, [72.7,3.4, 96.6, 27.3,95.4,72.7,95,84.95,84.95], marker='o', linewidth=2)
+plt.plot(n, [43.5,6.2,93.2,66.5,76.9,55.6,84.5,77.6,77.6], marker='o', linewidth=2)
 
-plt.plot(n, [94.6 ,5, 95, 5.4, 94.7, 94.7, 97.9 ,94.8, 94.8], marker='o', linewidth=2)
+plt.plot(n, [86.1,4.9,95.1,19.9,89.3,87.5,96.3,92.2,92.2], marker='o', linewidth=2)
 
-plt.plot(n, [88.7,5.5,94.5,11.3,93.9,91.2,96.5,91.68,91.68], marker='o', linewidth=2)
+plt.plot(n, [47.2,3.6,96.4,13.9,86.2,61,87.2,80.61,80.61], marker='o', linewidth=2)
 
-plt.plot(n, [91.5, 5.7, 94.3, 8.5,93.9,92.7,92.9,92.96,92.96], marker='o', linewidth=2)
+plt.plot(n, [53.7,3.4,96.6,46.3,88.3,66.8,75.2,82.84,82.84], marker='o', linewidth=2)
 
 plt.xticks(n, ['TPR', 'FPR', 'TNR', 'FNR', 'Precision', 'F1_score', 'ROC', 'Accuracy', 'Score'])
 

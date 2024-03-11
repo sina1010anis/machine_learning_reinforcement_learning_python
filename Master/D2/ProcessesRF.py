@@ -24,7 +24,7 @@ def showPlot():
 
     x_tr, x_te, l_tr, l_te, data_x, labels, data = BUSC.buildData('CatchPhish_D2_normal.csv')
 
-    rf = RandomForestClassifier()
+    rf = RandomForestClassifier(n_estimators=200, max_leaf_nodes=4000)
 
     rf.fit(x_tr, l_tr)
 

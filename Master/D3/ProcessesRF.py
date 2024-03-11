@@ -7,11 +7,12 @@ import BUSC
 
 def benchmark():
 
-    x_tr, x_te, l_tr, l_te, data_x, labels, data = BUSC.buildData('CatchPhish_D1_normal.csv')
+    # x_tr, x_te, l_tr, l_te, data_x, labels, data = BUSC.buildData('CatchPhish_D3_normal.csv')
 
-    rf = RandomForestClassifier(n_estimators=150, max_leaf_nodes=3000)
+    x_tr, x_te, l_tr, l_te, data_x, labels, data = BUSC.buildData('CatchPhish_D3_normal.csv', ['amp_greater_equal', 'delims_url', 'len_url', 'email_exist', 'protocol_url', 'digits_url', 'digits_path'])
+    rf = RandomForestClassifier(n_estimators=70, max_leaf_nodes=6200)
 
-    print('n_estimators=150, max_leaf_nodes=3000')
+    print('n_estimators=70, max_leaf_nodes=6200')
 
     rf.fit(x_tr, l_tr)
 
@@ -22,9 +23,11 @@ def benchmark():
 
 def showPlot():
 
-    x_tr, x_te, l_tr, l_te, data_x, labels, data = BUSC.buildData('CatchPhish_D1_normal.csv')
+    x_tr, x_te, l_tr, l_te, data_x, labels, data = BUSC.buildData('CatchPhish_D3_normal.csv')
 
-    rf = RandomForestClassifier(n_estimators=200, max_leaf_nodes=4000)
+    # x_tr, x_te, l_tr, l_te, data_x, labels, data = BUSC.buildData('CatchPhish_D3_normal.csv', ['amp_greater_equal', 'delims_url', 'len_url', 'email_exist', 'protocol_url', 'digits_url', 'digits_path'])
+
+    rf = RandomForestClassifier(n_estimators=70, max_leaf_nodes=6200)
 
     rf.fit(x_tr, l_tr)
 

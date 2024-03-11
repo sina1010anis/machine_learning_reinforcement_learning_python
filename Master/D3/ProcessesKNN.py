@@ -7,9 +7,10 @@ import BUSC
 
 def benchmark():
 
-    x_tr, x_te, l_tr, l_te, data_x, labels, data = BUSC.buildData('CatchPhish_D1_normal.csv')
+    # x_tr, x_te, l_tr, l_te, data_x, labels, data = BUSC.buildData('CatchPhish_D3_normal.csv')
 
-    knn = KNeighborsClassifier(n_neighbors=11)
+    x_tr, x_te, l_tr, l_te, data_x, labels, data = BUSC.buildData('CatchPhish_D3_normal.csv', ['amp_greater_equal', 'delims_url', 'len_url', 'email_exist', 'protocol_url', 'digits_url', 'digits_path'])
+    knn = KNeighborsClassifier(n_neighbors=6)
 
     knn.fit(x_tr, l_tr)
 
@@ -20,9 +21,11 @@ def benchmark():
 
 def showPlot():
 
-    x_tr, x_te, l_tr, l_te, data_x, labels, data = BUSC.buildData('CatchPhish_D1_normal.csv')
+    x_tr, x_te, l_tr, l_te, data_x, labels, data = BUSC.buildData('CatchPhish_D3_normal.csv')
 
-    knn = KNeighborsClassifier(n_neighbors=11)
+    # x_tr, x_te, l_tr, l_te, data_x, labels, data = BUSC.buildData('CatchPhish_D3_normal.csv', ['amp_greater_equal', 'delims_url', 'len_url', 'email_exist', 'protocol_url', 'digits_url', 'digits_path'])
+
+    knn = KNeighborsClassifier(n_neighbors=6)
 
     knn.fit(x_tr, l_tr)
 
